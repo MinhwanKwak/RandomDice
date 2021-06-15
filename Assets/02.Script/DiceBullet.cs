@@ -8,6 +8,7 @@ public class DiceBullet : MonoBehaviour
     public int BulletDamage;
 
     public GameObject Target;
+
     private Vector3 Targetpos;
 
     private void Update()
@@ -17,7 +18,7 @@ public class DiceBullet : MonoBehaviour
             Vector3  Direction = (transform.position - Targetpos).normalized;
             transform.position -= Direction * Time.deltaTime * BulletSpeed;
         }
-        if(Target == null)
+        else
         {
             Destroy(gameObject);
         }

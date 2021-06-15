@@ -15,7 +15,13 @@ public class BaseDice : MonoBehaviour
 
     public LayerMask TargetLayer;
 
+    public int DiceLevel = 1;
+
     public Collider2D targets;
+
+    public SpriteRenderer SR;
+
+    public Sprite[] LevelSR;
 
     private float CurrentRateFire;
     // Start is called before the first frame update
@@ -39,8 +45,7 @@ public class BaseDice : MonoBehaviour
         if (targets != null)
         {
         
-            Debug.DrawRay(transform.position, targets.transform.position, Color.blue);
-            Debug.Log(targets.name);
+            //Debug.DrawRay(transform.position, targets.transform.position, Color.blue);
             CurrentRateFire += Time.deltaTime;
             if (CurrentRateFire >= FireTime)
             {
@@ -53,12 +58,39 @@ public class BaseDice : MonoBehaviour
     public void Attack()
     {
         Instantiate(Bullet, transform.position , Quaternion.identity).GetComponent<DiceBullet>().TargetToEnemy(targets.transform);
-
     }
 
+    public bool DrawUpgrade(int index)
+    {
+        switch(index)
+        {
+            case 2:
+                SR.sprite = LevelSR[0];
+                return true;
+            case 3:
+                SR.sprite = LevelSR[1];
+                return true;
+            case 4:
+                SR.sprite = LevelSR[2];
+                return true;
+            case 5:
+                SR.sprite = LevelSR[3];
+                return true;
+            case 6:
+                SR.sprite = LevelSR[4];
+                return true;
+            case 7:
+                SR.sprite = LevelSR[5];
+                return true;
+            default:
+                return false;
+        }
+    }
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, Distance);
     }
+
+   
 }

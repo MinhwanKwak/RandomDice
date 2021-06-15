@@ -15,8 +15,7 @@ public class InstallDice : MonoBehaviour
     [SerializeField]
     InstallInfo[] DicePlane;
 
-
-
+    private int Index = 0;
     public void Install()
     {
         if(GameManager.Instance.SP >= GameManager.Instance.DiceBuySP)
@@ -33,11 +32,14 @@ public class InstallDice : MonoBehaviour
                     continue;
                 }
                 DicePlane[InstallIndex].IsInstall = true;
+
                 GameObject Dice =  GameManager.Instance.RandomDiceInstall();
+                Dice.gameObject.name = Dice.gameObject.name + Index.ToString();
+                GameManager.Instance.CurrentDice.Add(Dice.gameObject.name, Dice.gameObject);
+                Index++;
                 Dice.transform.position = DicePlane[InstallIndex].InstallTr.position;
                 break;
             }
         }
-
     }
 }

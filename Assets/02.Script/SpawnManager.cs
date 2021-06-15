@@ -23,12 +23,14 @@ public class SpawnManager : MonoBehaviour
     public int CurrentStage;
 
 
+    private int EnemySpawnIdx;
 
     private void Start()
     {
         StartCoroutine(StartSpawn());
     }
 
+    //Àû ½ºÆù 
     public IEnumerator StartSpawn()
     {
         while(CurrentStage != Stages.Length)
@@ -36,6 +38,9 @@ public class SpawnManager : MonoBehaviour
             for (int i = 0; i < Stages[CurrentStage].SpawnEnemy.Length; ++i)
             {
                 GameObject Enemy = Instantiate(Stages[CurrentStage].SpawnEnemy[i]);
+                Enemy.name = Enemy.name + EnemySpawnIdx.ToString();
+                GameManager.Instance.CurrentEnemy.Add(Enemy.name, Enemy);
+                EnemySpawnIdx++;
                 Enemy.transform.position = SpawnLocation.position;
                 float RandomRange = Random.Range(Stages[CurrentStage].SpawnTimeLimitStart, Stages[CurrentStage].SpawnTImeLimitEnd);
                 yield return new WaitForSeconds(RandomRange);

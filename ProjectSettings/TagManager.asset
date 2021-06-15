@@ -8,6 +8,13 @@ TagManager:
   - EndPoint
   - Bullet
   - Enemy
+  - EletronicDice
+  - PoisonDice
+  - RedDice
+  - IceDice
+  - IronDice
+  - WindDice
+  - UpsideDownDice
   layers:
   - Default
   - TransparentFX

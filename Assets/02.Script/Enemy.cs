@@ -13,8 +13,7 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
-        
-        
+      DrawHp();
     }
     private void Update()
     {
@@ -39,7 +38,7 @@ public class Enemy : MonoBehaviour
            DiceBullet bullet =  collision.gameObject.GetComponent<DiceBullet>();
            Hp -= bullet.BulletDamage;
            DrawHp();
-           Dead();
+            Dead();
         }
     }
 
@@ -47,6 +46,7 @@ public class Enemy : MonoBehaviour
     {
         if(Hp <= 0 )
         {
+            GameManager.Instance.CurrentEnemy.Remove(this.name);
             Destroy(gameObject);
         }
     }
