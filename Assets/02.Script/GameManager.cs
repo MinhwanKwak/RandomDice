@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
+    public SpawnManager spawnManager;
+
     public int SP;
     public int DiceBuySP;
 

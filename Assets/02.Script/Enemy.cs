@@ -11,14 +11,20 @@ public class Enemy : MonoBehaviour
 
     public Text UIHp;
 
+    [HideInInspector]
+    public bool IsBossMove = false;
+
     void Start()
     {
       DrawHp();
     }
     private void Update()
     {
-        Vector3 direction = (transform.position - SpawnManager.Instancee.RaliPoint[RaliPointNumber].transform.position).normalized;
-        transform.position -= direction * Time.deltaTime * Speed;
+        if (!IsBossMove)
+        {
+            Vector3 direction = (transform.position - SpawnManager.Instancee.RaliPoint[RaliPointNumber].transform.position).normalized;
+            transform.position -= direction * Time.deltaTime * Speed;
+        }
     }
 
 

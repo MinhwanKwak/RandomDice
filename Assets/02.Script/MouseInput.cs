@@ -84,7 +84,7 @@ public class MouseInput : MonoBehaviour
             bool IsUpgrade =  UpgradeDice.DrawUpgrade(UpgradeDice.DiceLevel);
             if (IsUpgrade)
             {
-                GameManager.Instance.CurrentDice.Remove(UpgradeDice.name);
+                GameManager.Instance.CurrentDice.Remove(destroydice.name);
                 CurrentInputTarget = null;
                 Destroy(destroydice.gameObject);
             }

@@ -1964,11 +1964,7 @@ MonoBehaviour:
     - {fileID: 3577011396770835536, guid: fb5d8c4b1db808b48a28ea723825dae6, type: 3}
     - {fileID: 3577011396770835536, guid: fb5d8c4b1db808b48a28ea723825dae6, type: 3}
     - {fileID: 3577011396770835536, guid: fb5d8c4b1db808b48a28ea723825dae6, type: 3}
-    - {fileID: 3577011396770835536, guid: fb5d8c4b1db808b48a28ea723825dae6, type: 3}
-    - {fileID: 3577011396770835536, guid: fb5d8c4b1db808b48a28ea723825dae6, type: 3}
-    - {fileID: 3577011396770835536, guid: fb5d8c4b1db808b48a28ea723825dae6, type: 3}
-    - {fileID: 3577011396770835536, guid: fb5d8c4b1db808b48a28ea723825dae6, type: 3}
-    - {fileID: 3577011396770835536, guid: fb5d8c4b1db808b48a28ea723825dae6, type: 3}
+    - {fileID: 94676383634301743, guid: 5881bc0cc938c2b468ded1c3f972da64, type: 3}
     SpawnTimeLimitStart: 0.3
     SpawnTImeLimitEnd: 4
   - SpawnEnemy:
@@ -2053,6 +2049,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4ef9184f5c7e3c4b95f405a101d7373, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnManager: {fileID: 683657945}
   SP: 1500
   DiceBuySP: 100
   RandomDice:

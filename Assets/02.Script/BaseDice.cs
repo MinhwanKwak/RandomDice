@@ -23,11 +23,14 @@ public class BaseDice : MonoBehaviour
 
     public Sprite[] LevelSR;
 
+    [HideInInspector]
+    public bool IsFire = false;
+
     private float CurrentRateFire;
     // Start is called before the first frame update
     void Start()
     {
-        
+        IsFire = true;
     }
 
     // Update is called once per frame
@@ -43,11 +46,10 @@ public class BaseDice : MonoBehaviour
 
         }
         if (targets != null)
-        {
-        
+        {    
             //Debug.DrawRay(transform.position, targets.transform.position, Color.blue);
             CurrentRateFire += Time.deltaTime;
-            if (CurrentRateFire >= FireTime)
+            if (CurrentRateFire >= FireTime && IsFire)
             {
                 CurrentRateFire = 0f;
                 Attack();
