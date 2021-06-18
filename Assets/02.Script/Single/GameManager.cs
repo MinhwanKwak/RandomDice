@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviourPunCallbacks
 {
     public static GameManager Instance;
 
@@ -16,8 +18,12 @@ public class GameManager : MonoBehaviour
 
     public Dictionary<string, GameObject> CurrentEnemy;
     public Dictionary<string, GameObject> CurrentDice;
+    public Dictionary<string, GameObject> NetworkDice;
 
- 
+    public PhotonView PV;
+
+    [HideInInspector]
+    public int DiceIndex;
 
     private void Awake()
     {
@@ -28,19 +34,16 @@ public class GameManager : MonoBehaviour
 
         CurrentEnemy = new Dictionary<string, GameObject>();
         CurrentDice = new Dictionary<string, GameObject>();
+        NetworkDice = new Dictionary<string, GameObject>();
+        PV = gameObject.GetComponent<PhotonView>();
     }
 
 
 
     public GameObject RandomDiceInstall()
     {
-         int DiceIndex = Random.Range(0, 4);
-
-       
+        DiceIndex = Random.Range(0, 4);
         GameObject InstantiateDice = Instantiate(RandomDice[DiceIndex]);
-
         return InstantiateDice;
     }
-    
-
 }

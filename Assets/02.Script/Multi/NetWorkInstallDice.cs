@@ -15,7 +15,18 @@ public class NetWorkInstallDice : MonoBehaviourPunCallbacks , IPunObservable
 
     private int Index = 0;
 
+
+    private int NetworkIndex = 0;
+
+    private GameObject MyDice;
+    private GameObject Dice;
+
     private Player[] players;
+
+
+    private int DiceIndex = 0;
+
+    private int NumberingIndex = 0;
     public void Install()
     {
         if (GameManager.Instance.SP >= GameManager.Instance.DiceBuySP)
@@ -33,24 +44,55 @@ public class NetWorkInstallDice : MonoBehaviourPunCallbacks , IPunObservable
                 }
                 DicePlane[InstallIndex].IsInstall = true;
 
-                GameObject Dice = GameManager.Instance.RandomDiceInstall();
-                //PV.RPC("AnotherInstantiateDice", RpcTarget.AllBuffered, Dice.name, InstallIndex);
 
-                string Clonedelete = Dice.name.Replace("(Clone)", "");
+                PV.RPC(nameof(RandomIndex), RpcTarget.AllBuffered);
 
-                GameObject MyDice =   PhotonNetwork.Instantiate(Clonedelete, AnotherDicePlane[InstallIndex].InstallTr.position, Quaternion.identity, 0);
-                Destroy(MyDice);
+                Dice = RandomDiceInstall();
 
-                Dice.gameObject.name = Dice.gameObject.name + Index.ToString();
+                PV.RPC(nameof(DiceInstantiate), RpcTarget.OthersBuffered, InstallIndex, DiceIndex);
+
                 GameManager.Instance.CurrentDice.Add(Dice.gameObject.name, Dice.gameObject);
-                Index++;
                 Dice.transform.position = DicePlane[InstallIndex].InstallTr.position;
                 break;
             }   
         }
     }
+    [PunRPC]
+    public void DiceInstantiate(int InstallIndex , int Index)
+    {
+            MyDice = Instantiate(GameManager.Instance.RandomDice[Index], AnotherDicePlane[InstallIndex].InstallTr.position, Quaternion.identity);
+
+            MyDice.name = MyDice + NetworkIndex.ToString();
+            ++NetworkIndex;
+
+            GameManager.Instance.NetworkDice.Add(MyDice.name, MyDice);  
+    }
+    [PunRPC]
+    public void RandomIndex()
+    {
+        DiceIndex = Random.Range(0, 4);
+    }
+
+
+
+    public GameObject RandomDiceInstall()
+    {
+        GameObject InstantiateDice = Instantiate(GameManager.Instance.RandomDice[DiceIndex]);
+        InstantiateDice.name = InstantiateDice.ToString() + NumberingIndex.ToString();
+        NumberingIndex++;
+        return InstantiateDice;
+    }
+
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
+       if(stream.IsWriting)
+       {
+            stream.SendNext(DiceIndex);
+       }
+       else
+       {
+            this.DiceIndex = (int)stream.ReceiveNext();
+       }
     }
 }
