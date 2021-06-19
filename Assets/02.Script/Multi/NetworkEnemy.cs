@@ -38,6 +38,7 @@ public class NetworkEnemy : MonoBehaviour
         else if (collision.CompareTag("EndPoint"))
         {
             Destroy(gameObject);
+            UIManager.Instance.HPReduction();
         }
 
         if (collision.CompareTag("Bullet"))

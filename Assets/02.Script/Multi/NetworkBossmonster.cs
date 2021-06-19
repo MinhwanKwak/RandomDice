@@ -113,6 +113,7 @@ public class NetworkBossmonster : MonoBehaviour
         else if (collision.CompareTag("EndPoint"))
         {
             Destroy(gameObject);
+            UIManager.Instance.HPReduction();
         }
 
         if (collision.CompareTag("Bullet"))
@@ -129,6 +130,7 @@ public class NetworkBossmonster : MonoBehaviour
         if (Hp <= 0)
         {
             GameManager.Instance.CurrentEnemy.Remove(this.name);
+            UIManager.Instance.Win.SetActive(true);
             Destroy(gameObject);
         }
     }

@@ -21,7 +21,7 @@ public class NetworkSpawnManager : MonoBehaviour
 
     PhotonView PV;
 
-    float RandomRange;
+    int RandomRange;
 
     private void Start()
     {

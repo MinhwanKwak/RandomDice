@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     [HideInInspector]
     public int DiceIndex;
 
+    public int Hp = 3;
+
     private void Awake()
     {
         if(Instance == null)

@@ -6,8 +6,8 @@ using UnityEngine;
 public class Stage
 {
   public  GameObject[] SpawnEnemy;
-  public  float SpawnTimeLimitStart; // 스폰을 명령하고 언제 실행시키는지 
-  public  float SpawnTImeLimitEnd;
+  public  int SpawnTimeLimitStart; // 스폰을 명령하고 언제 실행시키는지 
+  public  int SpawnTImeLimitEnd;
 }
 
 public class SpawnManager : MonoBehaviour
