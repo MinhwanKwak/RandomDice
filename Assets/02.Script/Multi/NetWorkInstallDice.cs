@@ -58,13 +58,13 @@ public class NetWorkInstallDice : MonoBehaviourPunCallbacks , IPunObservable
         }
     }
     [PunRPC]
-    public void DiceInstantiate(int InstallIndex , int Index)
+    public void DiceInstantiate(int InstallIndex , int Index) // 상대컴퓨터에서 한번호출 
     {
             MyDice = Instantiate(GameManager.Instance.RandomDice[Index], AnotherDicePlane[InstallIndex].InstallTr.position, Quaternion.identity);
-
-            MyDice.name = MyDice + NetworkIndex.ToString();
-            ++NetworkIndex;
-
+            
+            
+            MyDice.name = MyDice.name + NetworkIndex.ToString();
+            NetworkIndex++;
             GameManager.Instance.NetworkDice.Add(MyDice.name, MyDice);  
     }
     [PunRPC]
@@ -75,11 +75,12 @@ public class NetWorkInstallDice : MonoBehaviourPunCallbacks , IPunObservable
 
 
 
-    public GameObject RandomDiceInstall()
+    public GameObject RandomDiceInstall() // 내컴퓨터에서 한번호출
     {
         GameObject InstantiateDice = Instantiate(GameManager.Instance.RandomDice[DiceIndex]);
-        InstantiateDice.name = InstantiateDice.ToString() + NumberingIndex.ToString();
+        InstantiateDice.name = InstantiateDice.name + NumberingIndex.ToString();
         NumberingIndex++;
+        
         return InstantiateDice;
     }
 

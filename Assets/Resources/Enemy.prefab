@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 2244675253835129304}
   - component: {fileID: 1324074877}
   - component: {fileID: 1324074878}
-  - component: {fileID: 1324074874}
   - component: {fileID: -2238718774597343223}
+  - component: {fileID: 8406791870014046162}
   m_Layer: 7
   m_Name: Enemy
   m_TagString: Enemy
@@ -134,22 +134,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.62, y: 0.62}
   m_EdgeRadius: 0
---- !u!114 &1324074874
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3577011396770835536}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 323c3dbf824f8aa4da163db3c8339fea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Hp: 450
-  Speed: 1
-  UIHp: {fileID: 6372481545599168250}
-  IsBossMove: 0
 --- !u!114 &-2238718774597343223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,6 +156,22 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &8406791870014046162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3577011396770835536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d33b158f133ad8f4291c38fa6398a6fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Hp: 450
+  Speed: 1
+  UIHp: {fileID: 6372481545599168250}
+  IsBossMove: 0
 --- !u!1 &7065168936258266764
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,19 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
-public class BossMonster : MonoBehaviour
+
+public class NetworkBossmonster : MonoBehaviour
 {
     public Transform BossSpawnSelect;
 
     public float MoveSpeed;
 
     public int Hp;
-    
+
     public Text UIHp;
 
     private int RaliPointNumber;
 
-    private bool IsMoveStart = false;    
+    private bool IsMoveStart = false;
     private void Start()
     {
         DrawHp();
@@ -26,7 +27,7 @@ public class BossMonster : MonoBehaviour
     {
         if (IsMoveStart)
         {
-            Vector3 direction = (transform.position - SpawnManager.Instancee.RaliPoint[RaliPointNumber].transform.position).normalized;
+            Vector3 direction = (transform.position - NetworkSpawnManager.Instancee.RaliPoint[RaliPointNumber].transform.position).normalized;
             transform.position -= direction * Time.deltaTime * MoveSpeed;
         }
     }
@@ -52,7 +53,7 @@ public class BossMonster : MonoBehaviour
         {
             if (Targets != null)
             {
-                Enemy target = Targets.transform.GetComponent<Enemy>();
+                NetworkEnemy target = Targets.transform.GetComponent<NetworkEnemy>();
                 if (target != null)
                 {
                     target.IsBossMove = true;
@@ -60,18 +61,18 @@ public class BossMonster : MonoBehaviour
             }
         }
 
-        transform.DOMove(GameManager.Instance.spawnManager.RaliPoint[1].transform.position, 2f).OnComplete(()=>{
+        transform.DOMove(GameManager.Instance.networkSpawnManager.RaliPoint[1].transform.position, 2f).OnComplete(() => {
             foreach (var Targets in GameManager.Instance.CurrentEnemy.Values)
             {
-              if (Targets != null)
-              {
-                  Enemy target = Targets.transform.GetComponent<Enemy>();
-                  if (target != null)
-                  {
-                      target.transform.DOMove(transform.position, 2f).OnComplete(() => { 
-                          Destroy(target.gameObject);
-                      });
-                  }
+                if (Targets != null)
+                {
+                    NetworkEnemy target = Targets.transform.GetComponent<NetworkEnemy>();
+                    if (target != null)
+                    {
+                        target.transform.DOMove(transform.position, 2f).OnComplete(() => {
+                            Destroy(target.gameObject);
+                        });
+                    }
                 }
             }
             FunctionTimer.Create(OnMoveBoss, 2f);
@@ -82,7 +83,7 @@ public class BossMonster : MonoBehaviour
 
     public void OnMoveBoss()
     {
-        transform.DOMove(GameManager.Instance.spawnManager.SpawnLocation.transform.position, 2f).OnComplete(() =>
+        transform.DOMove(GameManager.Instance.networkSpawnManager.SpawnLocation.transform.position, 2f).OnComplete(() =>
         {
             foreach (var Dice in GameManager.Instance.CurrentDice.Values)
             {

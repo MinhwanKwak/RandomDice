@@ -67,6 +67,7 @@ public class NetWorkBaseDice : MonoBehaviourPunCallbacks
         Instantiate(Bullet, transform.position, Quaternion.identity).GetComponent<DiceBullet>().TargetToEnemy(targets.transform);
     }
 
+    [PunRPC]
     public bool DrawUpgrade(int index)
     {
         switch (index)

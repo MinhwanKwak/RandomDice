@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 3446083857724173991}
   - component: {fileID: 3527518362236307458}
   - component: {fileID: 3527518362236307457}
-  - component: {fileID: 3527518362063609196}
   - component: {fileID: -7805487778074160849}
+  - component: {fileID: 4865407143585410252}
   m_Layer: 7
   m_Name: BossMonster
   m_TagString: Enemy
@@ -134,22 +134,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.62, y: 0.62}
   m_EdgeRadius: 0
---- !u!114 &3527518362063609196
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 94676383634301743}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1de348b26793d8d418e98de71b4f64e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BossSpawnSelect: {fileID: 4484732085272845644}
-  MoveSpeed: 1
-  Hp: 4500
-  UIHp: {fileID: 7537857482400670085}
 --- !u!114 &-7805487778074160849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,6 +156,22 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &4865407143585410252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 94676383634301743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ef90b2ec0a527f4eb17642c2ebbcf6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BossSpawnSelect: {fileID: 4484732085272845644}
+  MoveSpeed: 1
+  Hp: 4500
+  UIHp: {fileID: 7537857482400670085}
 --- !u!1 &5978747258670475763
 GameObject:
   m_ObjectHideFlags: 0

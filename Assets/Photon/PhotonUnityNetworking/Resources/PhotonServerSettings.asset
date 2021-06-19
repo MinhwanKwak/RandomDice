@@ -43,6 +43,10 @@ MonoBehaviour:
   - DiceInstantiate
   - SetDiceIndex
   - RandomIndex
+  - NetworkDiceDelete
+  - NetworkDiceUpgrade
+  - DrawUpgrade
+  - RandomUnitySpawn
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

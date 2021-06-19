@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     public static GameManager Instance;
 
     public SpawnManager spawnManager;
+    public NetworkSpawnManager networkSpawnManager;
 
     public int SP;
     public int DiceBuySP;
