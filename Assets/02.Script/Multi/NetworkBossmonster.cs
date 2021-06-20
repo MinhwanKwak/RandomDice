@@ -61,7 +61,7 @@ public class NetworkBossmonster : MonoBehaviour
             }
         }
 
-        transform.DOMove(GameManager.Instance.networkSpawnManager.RaliPoint[1].transform.position, 2f).OnComplete(() => {
+        transform.DOMove(GameManager.Instance.networkSpawnManager.RaliPoint[2].transform.position, 2f).OnComplete(() => {
             foreach (var Targets in GameManager.Instance.CurrentEnemy.Values)
             {
                 if (Targets != null)
@@ -106,15 +106,20 @@ public class NetworkBossmonster : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("RaliPoint"))
+        if (collision.CompareTag("RaliPointL"))
         {
-            RaliPointNumber++;
+            RaliPointNumber = 2;
         }
         else if (collision.CompareTag("EndPoint"))
         {
             Destroy(gameObject);
             UIManager.Instance.HPReduction();
         }
+        else if (collision.CompareTag("RaliPoint"))
+        {
+            RaliPointNumber++;
+        }
+
 
         if (collision.CompareTag("Bullet"))
         {

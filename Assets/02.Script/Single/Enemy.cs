@@ -53,6 +53,8 @@ public class Enemy : MonoBehaviour
         if(Hp <= 0 )
         {
             GameManager.Instance.CurrentEnemy.Remove(this.name);
+            GameManager.Instance.SP += 25;
+            UIManager.Instance.DrawText();
             Destroy(gameObject);
         }
     }

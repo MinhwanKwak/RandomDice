@@ -8,6 +8,7 @@ public class NetworkSpawnManager : MonoBehaviour
 {
     public GameObject[] RaliPoint;
     public Transform SpawnLocation;
+    public Transform SpawnLocationR;
     public static NetworkSpawnManager Instancee;
     public float NextStageTime;
     [SerializeField]
@@ -23,6 +24,8 @@ public class NetworkSpawnManager : MonoBehaviour
 
     int RandomRange;
 
+    bool IsSpawnLR = false;
+
     private void Start()
     {
         PV = gameObject.GetComponent<PhotonView>();
@@ -36,11 +39,23 @@ public class NetworkSpawnManager : MonoBehaviour
         {
             for (int i = 0; i < Stages[CurrentStage].SpawnEnemy.Length; ++i)
             {
-                GameObject Enemy = Instantiate(Stages[CurrentStage].SpawnEnemy[i]);
-                Enemy.name = Enemy.name + EnemySpawnIdx.ToString();
-                GameManager.Instance.CurrentEnemy.Add(Enemy.name, Enemy);
+                GameObject enemy = Instantiate(Stages[CurrentStage].SpawnEnemy[i]);
+                NetworkEnemy baseenemy = enemy.GetComponent<NetworkEnemy>();
+                enemy.name = enemy.name + EnemySpawnIdx.ToString();
+                GameManager.Instance.CurrentEnemy.Add(enemy.name, enemy);
                 EnemySpawnIdx++;
-                Enemy.transform.position = SpawnLocation.position;
+                if (!IsSpawnLR && baseenemy != null)
+                {
+                    baseenemy.IsLeftSpawn = true;
+                     IsSpawnLR = true;
+                    enemy.transform.position = SpawnLocation.position;
+                }
+                else if(IsSpawnLR && baseenemy != null)
+                {
+                    baseenemy.IsLeftSpawn = false;
+                    IsSpawnLR = false;
+                    enemy.transform.position = SpawnLocationR.position;
+                }
                 PV.RPC(nameof(RandomUnitySpawn), RpcTarget.AllBuffered, CurrentStage);
                 yield return new WaitForSeconds(RandomRange);
             }

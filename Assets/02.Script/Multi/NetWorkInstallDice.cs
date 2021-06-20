@@ -32,6 +32,7 @@ public class NetWorkInstallDice : MonoBehaviourPunCallbacks , IPunObservable
         if (GameManager.Instance.SP >= GameManager.Instance.DiceBuySP)
         {
             GameManager.Instance.SP -= GameManager.Instance.DiceBuySP; //sp Â÷°¨ 
+            GameManager.Instance.DiceBuySP += 15;
 
             UIManager.Instance.DrawText();
             while (true)

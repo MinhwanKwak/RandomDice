@@ -15,6 +15,9 @@ public class NetworkEnemy : MonoBehaviour
     [HideInInspector]
     public bool IsBossMove = false;
 
+
+    public bool IsLeftSpawn = false;
+
     void Start()
     {
         DrawHp();
@@ -31,11 +34,20 @@ public class NetworkEnemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("RaliPoint"))
+        if (collision.CompareTag("RaliPointL") && IsLeftSpawn)
+        {
+            RaliPointNumber = 2;
+        }
+        else if (collision.CompareTag("RaliPointR") && !IsLeftSpawn)
+        {
+            RaliPointNumber = 2;
+        }
+        else if (collision.CompareTag("RaliPoint"))
         {
             RaliPointNumber++;
         }
-        else if (collision.CompareTag("EndPoint"))
+
+        if (collision.CompareTag("EndPoint"))
         {
             Destroy(gameObject);
             UIManager.Instance.HPReduction();
@@ -55,6 +67,8 @@ public class NetworkEnemy : MonoBehaviour
         if (Hp <= 0)
         {
             GameManager.Instance.CurrentEnemy.Remove(this.name);
+            GameManager.Instance.SP += 25;
+            UIManager.Instance.DrawText();
             Destroy(gameObject);
         }
     }
